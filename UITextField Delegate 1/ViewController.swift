@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //Delegate 와 ViewController 연결한다.
-        txtField.delegate = self
+        TextField.delegate = self
         
         TextField.placeholder = "입력해보세요!"
         TextField.clearButtonMode = UITextFieldViewMode.whileEditing
@@ -26,15 +26,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func Click(_ sender: Any) {
         Hello.text = "Hello " + TextField.text!
         TextField.text = ""
-        txtField.resignFirstResponder()
+        TextField.resignFirstResponder()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        txtField.resignFirstResponder()
+        TextField.resignFirstResponder()
         view.backgroundColor = UIColor.green
     }
+    // view를 터치하면 키패드가 내려감
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        txtField.resignFirstResponder()
+        TextField.resignFirstResponder()
         view.backgroundColor = UIColor.red
+        return true
+    }
+    // Clear button을 눌렀을때 호출re
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.backgroundColor = UIColor.brown
         return true
     }
     override func didReceiveMemoryWarning() {
